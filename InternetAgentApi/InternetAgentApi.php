@@ -38,7 +38,7 @@ switch ($Request["method"]) {
 		include_once("InternetAgentApiContentInfo.php");
 		$Content = GetPageInfo($Request);
 		if ($Content === false)
-			$Content = GetAnswerErrorHTTP("Неизвестная ошибка, обратитесь в техподдержку.");
+			$Content = GetAnswerErrorHTTP("Неизвестная ошибка.");
 		break;
 
 	case "services" :
@@ -46,7 +46,7 @@ switch ($Request["method"]) {
 		include_once("InternetAgentApiContentServices.php");
 		$Content = GetPageServices($Request);
 		if ($Content === false)
-			$Content = GetAnswerErrorHTTP("Неизвестная ошибка, обратитесь в техподдержку.");
+			$Content = GetAnswerErrorHTTP("Неизвестная ошибка.");
 		break;
 
 	case "send_notification" :
