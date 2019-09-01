@@ -29,8 +29,8 @@ switch ($Request["method"]) {
 
 	case "news" :
 		$Header = "Content-Type: text/html; charset=utf-8";
-		include_once("InternetAgentApiContentNews.php");
-		$Content = GetPageNews($Request);
+//		include_once("InternetAgentApiContentNews.php");
+//		$Content = GetPageNews($Request);
 		break;
 
 	case "info" :
@@ -47,12 +47,6 @@ switch ($Request["method"]) {
 		$Content = GetPageServices($Request);
 		if ($Content === false)
 			$Content = GetAnswerErrorHTTP("Неизвестная ошибка.");
-		break;
-
-	case "send_notification" :
-		$Header = "Content-Type: text/html; charset=utf-8";
-		InitMysqli($mysqli);
-		$Content = SendNotification($Request);
 		break;
 
 	default : 
