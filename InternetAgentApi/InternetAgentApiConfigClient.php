@@ -5,12 +5,6 @@ $ClientConfig = array(
 		"app_title" => "Мой дом",
 		"toolbar_title" => "Мой дом",
 		"image_logo" => "https://flintnet.ru/api/apphome/image/house.jpg",
-		"active_tabs" => array(
-			"news" => true,
-			"info" => true,
-			"services" => false,
-			"support" => false,
-		),
 		"sections" => array(			
 			"news" => array(
 				"enable" => false,
