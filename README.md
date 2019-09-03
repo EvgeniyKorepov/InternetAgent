@@ -84,7 +84,7 @@
 - https://myserver/api/apphome/?request={"method":"support","sub_method":"page","token":"397156775c40ac94b63ff259620065"} шаблон страницы. В шаблоне вы можете разместить JS скрипт LoadContent(theUrl) для подгрузки контента. Это сделано для прозрачного обновления содержимого страницы, без ее перезагрузки. 
 - https://myserver/api/apphome/?request={"method":"support","sub_method":"content","token":"397156775c40ac94b63ff259620065"} контент страницы
 - https://myserver/api/apphome/?request={"method":"support","sub_method":"post","token":"397156775c40ac94b63ff259620065","message":"Тело сообщения"} запрос отправки сообщения
-- https://myserver/api/apphome/?request={"method":"support","sub_method":"get_last_message_id","token":"397156775c40ac94b63ff259620065"} запрос ID последнего сообщения. Приложение сравнивает полученное по запросу ID последнего сообщения сервера с ID полученного сообщения, и если они отличаются, то выполняет JS скрипт LoadContent(theUrl) на загруженной странице для подгрузки контента. 
+- https://myserver/api/apphome/?request={"method":"support","sub_method":"get_last_message_id","token":"397156775c40ac94b63ff259620065"} запрос ID последнего сообщения. Приложение сравнивает полученное по запросу ID последнего сообщения сервера с ID последнего полученного сообщения, и если они отличаются, то выполняет JS скрипт LoadContent(theUrl) на загруженной странице для подгрузки контента. 
 Подробнее с загрузкой страницы, обновлением ее содержимого через JS вы можете ознакомится в шаблонном примере. 
 
 
