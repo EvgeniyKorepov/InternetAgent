@@ -77,13 +77,13 @@
 }
 ```
 После получение конфигурации сервера и отсуствии ошибок приложение сразу готово к работе. При открытии разделов приложение запрашивает с вашего сервера соответствующие html страницы:
-- Простые запросы разделов news, info и services:
+
+Простые запросы разделов news, info и services:
 - https://myserver/api/apphome/?request={"method":"news","token":"397156775c40ac94b63ff259620065"}
 - https://myserver/api/apphome/?request={"method":"info","token":"397156775c40ac94b63ff259620065"}
 - https://myserver/api/apphome/?request={"method":"services","token":"397156775c40ac94b63ff259620065"}
 
-- Более сложные запросы раздела support:
-Запросы к методу support имеют дополнительный метод (sub_method)
+Более сложные запросы раздела support. Запросы к методу support имеют дополнительный метод (sub_method)
 - https://myserver/api/apphome/?request={"method":"support","sub_method":"page","token":"397156775c40ac94b63ff259620065"} шаблон страницы. В шаблоне вы можете разместить JS скрипт LoadContent(theUrl) для подгрузки контента. Это сделано для прозрачного обновления содержимого страницы, без ее перезагрузки. 
 - https://myserver/api/apphome/?request={"method":"support","sub_method":"content","token":"397156775c40ac94b63ff259620065"} контент страницы
 - https://myserver/api/apphome/?request={"method":"support","sub_method":"post","token":"397156775c40ac94b63ff259620065","message":"Тело сообщения"} запрос отправки сообщения
