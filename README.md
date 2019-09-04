@@ -78,9 +78,9 @@
 ```
 После получение конфигурации сервера и отсуствии ошибок приложение сразу готово к работе. При открытии разделов приложение запрашивает с вашего сервера соответствующие html страницы:
 - Простые запросы разделов news, info и services:
--- https://myserver/api/apphome/?request={"method":"news","token":"397156775c40ac94b63ff259620065"}
--- https://myserver/api/apphome/?request={"method":"info","token":"397156775c40ac94b63ff259620065"}
--- https://myserver/api/apphome/?request={"method":"services","token":"397156775c40ac94b63ff259620065"}
+- https://myserver/api/apphome/?request={"method":"news","token":"397156775c40ac94b63ff259620065"}
+- https://myserver/api/apphome/?request={"method":"info","token":"397156775c40ac94b63ff259620065"}
+- https://myserver/api/apphome/?request={"method":"services","token":"397156775c40ac94b63ff259620065"}
 
 - Более сложные запросы раздела support:
 Запросы к методу support имеют дополнительный метод (sub_method)
