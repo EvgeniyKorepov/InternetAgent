@@ -60,7 +60,7 @@ function GetIPCamEntranceContent() {
 		
 	$Content.= "
  		<div style=\"margin: 0 0 0 15px\">
-		<img style=\"-webkit-user-select: none;margin: auto;\" src=\"http://10.0.0.109/video3.mjpg\" alt=\"Камера не доступна из этой подсети\">
+		<image src=\"/api/apphome/image/ipcam002.PNG?nocache=12\" style=\"width: 100%\"/>
 		</div>
 	";
 	
@@ -73,7 +73,7 @@ function GetIPCamStreetContent() {
 		
 	$Content.= "
  		<div style=\"margin: 0 0 0 15px\">
-		<img style=\"-webkit-user-select: none;margin: auto;\" src=\"http://10.0.0.108/video3.mjpg\" alt=\"Камера не доступна из этой подсети\">
+		<img  src=\"/api/apphome/image/ipcam001.PNG?nocache=12\" style=\"width: 100%\">
 		</div>
 	";
 	
@@ -93,6 +93,14 @@ function GetServicesHTML() {
 					<script src=\"/api/app/js/bootstrap.js\" type=\"text/javascript\"></script>
 					<link href=\"/api/app/css/speedtest.css\" rel=\"stylesheet\" type=\"text/css\" />
 					<script src=\"/api/app/js/speedtest.js?cache=10\"></script>
+					<script type=\"text/javascript\">
+						var conutnumber=0;
+						function showImage(){
+							document.stillimage.src = \"http://10.0.0.109:80/cgi-bin/viewer/video.jpg?streamid=2&quality=5&date=\" + conutnumber;
+							conutnumber++;
+							setTimeout(\"showImage()\",1000);
+						}
+				</script>
 				</head>
 			<body>
 	";

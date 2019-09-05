@@ -7,8 +7,8 @@ $ClientConfig = array(
 		"image_logo" => "https://flintnet.ru/api/apphome/image/house.jpg",
 		"sections" => array(			
 			"news" => array(
-				"enable" => false,
-				"name" => "Новости",
+				"enable" => true,
+				"name" => "Лента напоминаний",
 			),
 			"info" => array(
 				"enable" => true,
@@ -19,8 +19,8 @@ $ClientConfig = array(
 				"name" => "Сервисы",
 			),
 			"support" => array(
-				"enable" => false,
-				"name" => "Чат",
+				"enable" => true,
+				"name" => "Оповещения",
 				"read_only" => false,
 			),
 		),
@@ -30,7 +30,7 @@ $ClientConfig = array(
 		"debug" => false,
 		"versions" => array(
 			"Windows" => array(
-				"build" => 68,
+				"build" => 63,
 				"update_url" => "https://flintnet.ru/soft/InternetAgentSetup.exe",
 			),
 			"Android" => array(
@@ -51,6 +51,6 @@ $ClientConfig = array(
 		"message" => 60,
 		"message_dialog" => 5,
 	),
-	"internet_provider_token" => "03e3267fa9cc********************",
+	"internet_provider_token" => "03e3267fa9cc4d398cb4679ab1bc155d",
 );
 

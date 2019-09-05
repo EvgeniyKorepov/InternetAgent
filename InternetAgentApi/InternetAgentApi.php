@@ -29,8 +29,8 @@ switch ($Request["method"]) {
 
 	case "news" :
 		$Header = "Content-Type: text/html; charset=utf-8";
-//		include_once("InternetAgentApiContentNews.php");
-//		$Content = GetPageNews($Request);
+		include_once("InternetAgentApiContentNews.php");
+		$Content = GetPageNews($Request);
 		break;
 
 	case "info" :
@@ -47,6 +47,14 @@ switch ($Request["method"]) {
 		$Content = GetPageServices($Request);
 		if ($Content === false)
 			$Content = GetAnswerErrorHTTP("Неизвестная ошибка.");
+		break;
+
+	case "support" :
+		$Header = "Content-Type: text/html; charset=utf-8";
+		include_once("InternetAgentApiContentSupport.php");
+		$Content = GetPageSupport($Request);
+		if ($Content === false)
+			$ErrorMessage = "Error method support";
 		break;
 
 	default : 
