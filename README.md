@@ -92,3 +92,10 @@
 Подробнее с загрузкой страницы, обновлением ее содержимого через JS вы можете ознакомится в шаблонном примере. 
 
 
+Примеры реальных запросов к API демо-сервера:
+- Запрос конфигурации https://flintnet.ru/api/apphome/?request={"method":"config","token":"397156775c40ac94b63ff259620065"}
+- Лента напоминаний https://flintnet.ru/api/apphome/?request={"method":"news","token":"397156775c40ac94b63ff259620065"}
+- Информация https://flintnet.ru/api/apphome/?request={"method":"info","token":"397156775c40ac94b63ff259620065"}
+- Сервисы https://flintnet.ru/api/apphome/?request={"method":"services","token":"397156775c40ac94b63ff259620065"}
+- Сообщения/оповещения https://flintnet.ru/api/apphome/?request={"method":"support","sub_method":"page","token":"397156775c40ac94b63ff259620065"} В конце страницы стоит вызов JS функции LoadContent() - это сделано для наглядности, для работы в приложении он не нужен, приложение само вызовет эту функцию после загрузки страницы.
+- https://flintnet.ru/api/apphome/?request={"method":"support","sub_method":"content","token":"397156775c40ac94b63ff259620065"} Контент страницы с сообщениями/оповещениями
