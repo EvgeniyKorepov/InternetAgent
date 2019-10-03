@@ -42,7 +42,10 @@ switch ($Request["method"]) {
 		break;
 
 	case "services" :
-		$Header = "Content-Type: text/html; charset=utf-8";
+		if (isset($Request["sub_method"]) and $Request["sub_method"] = "button_kitchen") {
+			$Header = "Content-Type: application/json; charset=utf-8";
+		} else 
+			$Header = "Content-Type: text/html; charset=utf-8";
 		include_once("InternetAgentApiContentServices.php");
 		$Content = GetPageServices($Request);
 		if ($Content === false)

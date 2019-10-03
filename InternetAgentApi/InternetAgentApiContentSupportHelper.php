@@ -17,10 +17,14 @@ function WriteMessage($UserID, $message) {
 	MyLog("WriteMessage", $query);
 	$mysqli->select_db("InternetAgent");
 	$mysqli_result = $mysqli->query($query);
-	if ($mysqli->affected_rows() == 1)
-		return true;
-	else
+	MyLog("WriteMessage ***************************");
+	if ($mysqli->affected_rows == 1) {
+		MyLog("WriteMessage succseful mysqli->insert_id=" . $mysqli->insert_id);
+		return $mysqli->insert_id;
+	} else {
+		MyLog("WriteMessage error");
 		return false;
+	}
 }
 
 function GetContentSupportLastMessageIDJSON($Request) {
@@ -55,18 +59,20 @@ function GetContentSupportArray() {
 	$query = "
 		SELECT
 			UNIX_TIMESTAMP(date) as `datetime`,
+			user_id,
 			text as message,
 			direction,
-			author
+			author,
+			InternetAgentToken.`name`
 		FROM
 			InternetAgentMessage
+		LEFT JOIN InternetAgentToken ON InternetAgentMessage.user_id = InternetAgentToken.id
 		WHERE
-			date > DATE_ADD(NOW(), INTERVAL -6 MONTH) AND
-			(user_id = $UserID OR user_id = 0)
+			date > DATE_ADD(NOW(), INTERVAL -6 MONTH) 
 		ORDER BY
 			date
 	";
-
+//			AND (user_id = $UserID OR user_id = 0)
 	$mysqli->select_db("InternetAgent");
 	$mysqli->query($query_update);
 	$mysqli_result = $mysqli->query($query);
@@ -97,7 +103,14 @@ function GetContentSupport($Request) {
 
 		$Direction = $Value["direction"];
 		$DateTime = date($DateTimeFormat, $Value["datetime"]);
-		$Author = $Value["author"];
+		if ($Direction == 1)
+			$Author = $Value["author"];
+		else
+			$Author = $Value["name"];
+
+		if ($Value["user_id"] != $_SESSION["UserData"]["UserID"])
+			$Direction = 1;
+
 		if ($Direction == 0) {
 			$Content.= "
 				<li>
@@ -145,10 +158,30 @@ function PostContentSupport($Request) {
 	MyLog("PostContentSupport", $Request);
 	if (isset($Request["message"])) {
 		$message = $Request["message"];
-		if (WriteMessage($UserID, $message))
+		$MessageID = WriteMessage($UserID, $message);
+		MyLog("PostContentSupport MessageID=$MessageID");
+		if ($MessageID !== false) {
+			MyLog("PostContentSupport WriteMessage succseful");
 			$ResultArray["error"]["error"] = false;
+		} else
+			MyLog("PostContentSupport WriteMessage error");
 	}
 	$Content = json_encode($ResultArray);
+
+	if ($ResultArray["error"]["error"] == false) {
+		include("/opt/InternetAgentApi/FCMNotification.php");
+		$FCMNotification = new FCMNotification();
+		$UserID = $_SESSION["UserData"]["UserID"];
+		$Title = "";
+		$Message = $message;
+//		$Message = "";
+		$MessageSection = "support";
+		$FCMNotification->SetMessageSection($MessageSection);
+		MyLog("PostContentSupport FCMNotification Send MessageID=$MessageID");
+		$FCMNotificationResult = $FCMNotification->Send($UserID, $Title, $Message, $MessageID);
+		MyLog("PostContentSupport FCMNotification Send FCMNotificationResult", $FCMNotificationResult);
+	}
+
 	return $Content;
 }
 
@@ -173,12 +206,13 @@ function GetContentSupportLastMessageID($UserID) {
 		FROM
 			InternetAgentMessage
 		WHERE
-			direction = 1 AND
 			(user_id = $UserID OR user_id = 0)
 		ORDER BY
 			date DESC
 		LIMIT 1
 	";
+//			direction = 1 AND
+//echo $query;
 	$mysqli->select_db("InternetAgent");
 	$mysqli_result = $mysqli->query($query);
 	$Result = 0;

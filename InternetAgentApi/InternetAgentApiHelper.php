@@ -13,7 +13,8 @@ function GetUserByToken($Token) {
 	$Token = $mysqli->real_escape_string($Token);
 	$query = "
 		SELECT
-			id
+			id,
+			name
 		FROM
 			InternetAgentToken
 		WHERE
@@ -25,6 +26,7 @@ function GetUserByToken($Token) {
 	if ($num_rows == 0)
 		return false;
 	$row = $mysqli_result->fetch_array(MYSQLI_ASSOC);
+  $_SESSION["UserData"]["UserName"] = $row["name"];
 	return $row["id"];
 }
 
@@ -132,6 +134,10 @@ function GetAnswerConfig($Request) {
 	$_SESSION["UTM5"]["AccountData"]["AccointID"] = $UserID;	
 
 	include("InternetAgentApiConfigClient.php");
+
+	$ClientConfig["interface"]["app_title"].= " - " .  $_SESSION["UserData"]["UserName"];
+	$ClientConfig["interface"]["toolbar_title"].= " - " .  $_SESSION["UserData"]["UserName"];
+
 	return JSONEncode($ClientConfig);
 }
 
@@ -182,7 +188,23 @@ function ArrayToHTML($Array) {
 }
 
 
+function ExternalDataLoad() {
+	$FileExternalDataPath = "/opt/InternetAgentApi/ExternalData.json";
+	$JSONExternalData = file_get_contents($FileExternalDataPath);
+	$ArrayExternalData = json_decode($JSONExternalData, true);
+	if (!isset($ArrayExternalData)) {
+		$ArrayExternalData = array(
+			"iRobotStatus" => false,
+			"LightKitchenStatus" => false,
+		);
+		file_put_contents($FileExternalDataPath, json_encode($ArrayExternalData, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+	}
+	return $ArrayExternalData;
+}
 
-
+function ExternalDataSave($ArrayExternalData) {
+	$FileExternalDataPath = "/opt/InternetAgentApi/ExternalData.json";
+	file_put_contents($FileExternalDataPath, json_encode($ArrayExternalData, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+}
 
 

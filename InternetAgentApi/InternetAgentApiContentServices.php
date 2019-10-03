@@ -22,7 +22,7 @@ function GetContentServices($Token) {
 	if (ProcessingUri())
 		return;
 
-	return GetServicesHTML();
+	return GetServicesHTML($Token);
 }
 
 function GetPageServices($Request) {
@@ -30,7 +30,14 @@ function GetPageServices($Request) {
 		return false;
 	$Token = $Request["token"];
 
-	$Content = GetContentServices($Token);
+	if (isset($Request["sub_method"])) {
+		switch ($Request["sub_method"]) {
+			case "button_kitchen" :
+				$Content = GetLightKitchenContent(true);
+				break;
+		}
+	} else 
+		$Content = GetContentServices($Token);
 	
 	return $Content;
 }

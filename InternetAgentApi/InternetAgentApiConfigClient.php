@@ -51,6 +51,6 @@ $ClientConfig = array(
 		"message" => 60,
 		"message_dialog" => 5,
 	),
-	"internet_provider_token" => "03e3267fa9cc4d398cb4679ab1bc155d",
+	"internet_provider_token" => "03e3267***************ab1bc155d",
 );
 

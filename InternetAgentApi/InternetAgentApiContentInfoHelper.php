@@ -4,10 +4,42 @@
 //@ini_set("display_errors", "0"); error_reporting(0);
 
 function GetAccountAllDataArray() {
+	$ArrayExternalData = ExternalDataLoad();
+//print_r($ArrayExternalData);
+	switch($ArrayExternalData["158d0002d4187c"]["data"]["status"]) {
+		case "on": 
+			$TextKitchen = FormatMessage("Включен", "red", "");
+			break;
+		case "off": 
+			$TextKitchen = FormatMessage("Выключен", "green", "");
+			break;
+		default :
+			$TextKitchen = "Не известно";
+	}
+
+	switch($ArrayExternalData["158d0002c4a2a6"]["data"]["status"]) {
+		case "open": 
+			$TextDoor = FormatMessage("Открыта", "red", "");
+			break;
+		case "close": 
+			$TextDoor = FormatMessage("Закрыта", "green", "");
+			break;
+		default :
+			$TextKitchen = "Не известно";
+	}
+
+
+	$ResultArray["Прихожая"] = array(
+		array(
+			"Title" => "Входная дверь",
+			"Text" => $TextDoor,
+		),
+	);
+
 	$ResultArray["Кухня"] = array(
 		array(
-			"Title" => "Газ",
-			"Text" => "Выкл.",
+			"Title" => "Датчик дыма",
+			"Text" => "Чисто",
 		),
 		array(
 			"Title" => "Газоанализатор",
@@ -19,14 +51,14 @@ function GetAccountAllDataArray() {
 		),
 		array(
 			"Title" => "Свет",
-			"Text" => "Вкл.",
+			"Text" => $TextKitchen,
 		),
-
+/*
 		array(
 			"Title" => "Окно",
 			"Text" => "Закрыто",
 		),
-
+*/
 	);
 
 	$ResultArray["Ванная комната"] = array(

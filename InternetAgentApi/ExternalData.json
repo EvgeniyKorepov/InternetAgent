@@ -1,0 +1,54 @@
+{
+    "04cf8c86c143": {
+        "cmd": "read_ack",
+        "model": "gateway",
+        "sid": "4cf8c86c143",
+        "short_id": 0,
+        "data": {
+            "rgb": 0,
+            "illumination": 1292,
+            "proto_version": "1.1.2"
+        }
+    },
+    "158d0002d4187c": {
+        "cmd": "read_ack",
+        "model": "plug",
+        "sid": "158d0002d4187c",
+        "short_id": 19871,
+        "data": {
+            "voltage": 3600,
+            "status": "off",
+            "inuse": "0",
+            "power_consumed": "9",
+            "load_power": "0.00"
+        }
+    },
+    "158d0002d6c8d4": {
+        "cmd": "read_ack",
+        "model": "motion",
+        "sid": "158d0002d6c8d4",
+        "short_id": 49859,
+        "data": {
+            "voltage": 3025
+        }
+    },
+    "158d0002c4a2a6": {
+        "cmd": "read_ack",
+        "model": "magnet",
+        "sid": "158d0002c4a2a6",
+        "short_id": 60626,
+        "data": {
+            "voltage": 3005,
+            "status": "close"
+        }
+    },
+    "158d0002d6a0b2": {
+        "cmd": "read_ack",
+        "model": "switch",
+        "sid": "158d0002d6a0b2",
+        "short_id": 10956,
+        "data": {
+            "voltage": 3052
+        }
+    }
+}

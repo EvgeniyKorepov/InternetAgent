@@ -40,7 +40,8 @@
 			  color: black;
 			  padding: 18px 20px;
 			  line-height: 26px;
-			  font-size: 16px;
+			  font-size: 400%;
+				line-height : normal;
 			  border-radius: 7px;
 			  margin-bottom: 10px;
 			  width: 90%;
@@ -76,7 +77,7 @@
 			  width: 100%;
 			  border: none;
 			  padding: 10px 20px;
-			  font: 14px/22px "Lato", Arial, sans-serif;
+			  font: 200% "Lato", Arial, sans-serif;
 			  margin-bottom: 10px;
 			  border-radius: 5px;
 		    resize: none;
@@ -164,7 +165,9 @@
 			theUrl = theUrl + '&rand=' + Math.random();
 			httpGetAsync(theUrl, FillContent);
 		}
-		// LoadContent('/api/apphome/?request={%22method%22:%22support%22,%22sub_method%22:%22content%22,%22token%22:%22397156775c40ac94b63ff259620065%22}'); -
+
+		LoadContent('/api/apphome/?request={"method":"support","sub_method":"content","token":"397156775c40ac94b63ff259620065"}'); 
+
 	</script>
 </head>
 <body>

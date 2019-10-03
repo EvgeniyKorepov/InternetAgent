@@ -11,7 +11,7 @@ function InitMysqli(&$mysqli) {
 	global $UTM_DB_base, $News_DB_base;
 	$UTM_DB_host = 'localhost';
 	$UTM_DB_user = 'InternetAgent';
-	$UTM_DB_password = 'j3qwvnoqw4t78';
+	$UTM_DB_password = '******************';
 
 	$Result = true;
 	if (@!$mysqli) {
